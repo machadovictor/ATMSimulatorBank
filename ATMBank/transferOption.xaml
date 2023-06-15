@@ -1,0 +1,17 @@
+﻿<Window x:Class="ATMBank.transferOption"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ATMBank"
+        mc:Ignorable="d"
+        Title="Transfer" Height="300" Width="500">
+    <Grid Background="Snow">
+        <WrapPanel Orientation="Vertical" RenderTransformOrigin="0.638,0.534">
+            <TextBox x:Name="textBox" Height="72" Width="493" Text="What type of transfer would you like to make?" Background="#ec0000" FontSize="18" Foreground="#333333" FontWeight="Bold" TextAlignment="Center" VerticalContentAlignment="Center" />
+        </WrapPanel>
+        <Button x:Name="btnBetweenAccounts" Content="Between My Accounts" Click="btnBetweenAccounts_Click" Margin="50,112,50,122"  Foreground="#333333" FontWeight="Bold"/>
+        <Button x:Name="btnAnotherHolder" Content="To Another Account Holder" Click="btnAnotherHolder_Click" Margin="50,191,50,43"  Foreground="#333333" FontWeight="Bold"/>
+        
+    </Grid>
+</Window>

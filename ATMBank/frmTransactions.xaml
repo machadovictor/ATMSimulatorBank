@@ -1,0 +1,23 @@
+﻿<Window x:Class="ATMBank.frmTransactions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ATMBank"
+        mc:Ignorable="d"
+        Title="Clients Transactions History" Height="450" Width="600">
+    <Grid Background="Snow">
+        <WrapPanel Orientation="Vertical" Margin="4.5,0,-4.5,0">
+            <TextBox x:Name="textBox" Height="87.905" Width="794.846" Background="#ec0000" FontSize="24" Foreground="#333333" VerticalContentAlignment="Center"/>
+        </WrapPanel>
+        <Image Source="bank_img.png" Margin="15,10,498,355"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Margin="4.5,0,-4.5,0" />
+        <Label Content="Transactions" HorizontalAlignment="Right" FontSize="32" Width="431.016" Margin="0,-2.741,43.827,348.85" Foreground="#333333" FontWeight="Bold"  />
+        <Label Content="by Accounts" HorizontalAlignment="Right" FontSize="32" Width="431.016" Margin="0,32.02,39.827,314.089" Foreground="#333333" FontWeight="Bold"  />
+
+        <ComboBox x:Name="TransactionsAccountsList" HorizontalAlignment="Left"
+                              Margin="334.258,28,0,0" VerticalAlignment="Top" Width="224.726" Height="43.55" ItemsSource="{Binding}"
+            DisplayMemberPath="AccountFullInfo" FontSize="16" FontWeight="Bold" SelectionChanged="TransactionsAccountsList_SelectionChanged"/>
+        <DataGrid x:Name="grdTransactions" HorizontalAlignment="Left" Height="274" Margin="18,108,0,0" VerticalAlignment="Top" Width="544"/>
+    </Grid>
+</Window>

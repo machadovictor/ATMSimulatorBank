@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BankATMModelStoreContainer" CdmEntityContainer="BankATMEntities1">
+    <EntitySetMapping Name="AccountTypes">
+      <EntityTypeMapping TypeName="BankATMModel.AccountTypes">
+        <MappingFragment StoreEntitySet="AccountTypes">
+          <ScalarProperty Name="accounttype_code" ColumnName="accounttype_code" />
+          <ScalarProperty Name="accounttype_description" ColumnName="accounttype_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bank">
+      <EntityTypeMapping TypeName="BankATMModel.Bank">
+        <MappingFragment StoreEntitySet="Bank">
+          <ScalarProperty Name="bank_code" ColumnName="bank_code" />
+          <ScalarProperty Name="bank_balance" ColumnName="bank_balance" />
+          <ScalarProperty Name="bank_status" ColumnName="bank_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="BankATMModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="client_code" ColumnName="client_code" />
+          <ScalarProperty Name="client_fullname" ColumnName="client_fullname" />
+          <ScalarProperty Name="client_phone" ColumnName="client_phone" />
+          <ScalarProperty Name="client_email" ColumnName="client_email" />
+          <ScalarProperty Name="client_pin" ColumnName="client_pin" />
+          <ScalarProperty Name="client_situation" ColumnName="client_situation" />
+          <ScalarProperty Name="client_attempts" ColumnName="client_attempts" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientsAccounts">
+      <EntityTypeMapping TypeName="BankATMModel.ClientsAccounts">
+        <MappingFragment StoreEntitySet="ClientsAccounts">
+          <ScalarProperty Name="clientaccount_id" ColumnName="clientaccount_id" />
+          <ScalarProperty Name="client_code" ColumnName="client_code" />
+          <ScalarProperty Name="accounttype_code" ColumnName="accounttype_code" />
+          <ScalarProperty Name="account_balance" ColumnName="account_balance" />
+          <ScalarProperty Name="accounttype_description" ColumnName="accounttype_description" />
+          <ScalarProperty Name="clientaccount_id_transferto" ColumnName="clientaccount_id_transferto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BankATMModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionsHistory">
+      <EntityTypeMapping TypeName="BankATMModel.TransactionsHistory">
+        <MappingFragment StoreEntitySet="TransactionsHistory">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="clientaccount_id" ColumnName="clientaccount_id" />
+          <ScalarProperty Name="client_code" ColumnName="client_code" />
+          <ScalarProperty Name="accounttype_description" ColumnName="accounttype_description" />
+          <ScalarProperty Name="transactiontype_code" ColumnName="transactiontype_code" />
+          <ScalarProperty Name="transactiontype_description" ColumnName="transactiontype_description" />
+          <ScalarProperty Name="transaction_amount" ColumnName="transaction_amount" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="clientaccount_id_transferto" ColumnName="clientaccount_id_transferto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTypes">
+      <EntityTypeMapping TypeName="BankATMModel.TransactionTypes">
+        <MappingFragment StoreEntitySet="TransactionTypes">
+          <ScalarProperty Name="transactiontype_code" ColumnName="transactiontype_code" />
+          <ScalarProperty Name="transactiontype_description" ColumnName="transactiontype_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BankATMModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BankATMModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BankATMModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BankATMModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BankATMModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BankATMModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BankATMModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BankATMModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BankATMModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

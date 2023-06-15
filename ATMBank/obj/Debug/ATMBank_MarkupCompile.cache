@@ -1,0 +1,20 @@
+﻿ATMBank
+
+
+winexe
+C#
+.cs
+D:\Integration Project 1 - ATM Simulator\ATMBank\obj\Debug\
+ATMBank
+none
+false
+DEBUG;TRACE
+D:\Integration Project 1 - ATM Simulator\ATMBank\App.xaml
+15692533151
+2-1105724867
+29109303730
+19-1676260875
+adminMainScreen.xaml;adminWithdraw.xaml;clientDeposit.xaml;clientPayBill.xaml;clientTransactions.xaml;clientTransfer.xaml;clientTransferToOther.xaml;clientWithdrawal.xaml;DepositPaperMoney.xaml;frmNewAccount.xaml;frmNewClient.xaml;frmTransactions.xaml;Login.xaml;MainWindow.xaml;transferOption.xaml;
+
+True
+

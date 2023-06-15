@@ -1,0 +1,31 @@
+﻿<Window x:Class="ATMBank.clientPayBill"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ATMBank"
+        mc:Ignorable="d"
+        Title="PayBill" Height="400" Width="500">
+    <Grid Background="Snow">
+        <WrapPanel Orientation="Vertical" RenderTransformOrigin="0.638,0.534">
+            <TextBox x:Name="textBox" Height="72" Width="493" Text="PAY BILL" Background="#ec0000" FontSize="24" Foreground="#333333" TextAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        </WrapPanel>
+
+        <Label Content="PAY BILL FROM:" HorizontalAlignment="Right" FontSize="16" Width="198" Margin="0,95,277,225" Foreground="#333333" FontWeight="Bold"  />
+        <ComboBox x:Name="paybillAccountsList" FontSize="12" Margin="165,98,95,225" ItemsSource="{Binding}"
+                            DisplayMemberPath="AccountFullInfo" SelectionChanged="paybillAccountsList_SelectionChanged"  HorizontalContentAlignment="Left"/>
+        <Label Content="Account Balance:" HorizontalAlignment="Right" FontSize="16" Width="139" Margin="0,149,347,179" Foreground="#333333" FontWeight="Bold"/>
+        <TextBox x:Name="paybillAmount" FontSize="12" Margin="165,254,95,82" VerticalContentAlignment="Center"/>
+
+
+        <Label Content="Amount:" HorizontalAlignment="Right" FontSize="16" Width="139" Margin="0,250,281,78" Foreground="#333333" FontWeight="Bold"/>
+        <TextBox x:Name="paybillAccountBalance" FontSize="12" Margin="166,146,161,176" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Center"/>
+
+        <Label Content="PAY BILL TO:" HorizontalAlignment="Right" FontSize="16" Width="139" Margin="0,198,311,130" Foreground="#333333" FontWeight="Bold"/>
+        <TextBox x:Name="paybillTo" FontSize="12" Margin="166,202,94,135"  VerticalContentAlignment="Center"/>
+
+
+        <Button x:Name="btnDepositSave" Content="_Save"   Foreground="#333333" FontWeight="Bold" Margin="101,304,271.6,25.4" Click="btnBillSave_Click"   />
+        <Button x:Name="btnDepositCancel" Content="_Cancel"   Foreground="#333333" FontWeight="Bold" Margin="251,304,121.6,25.4" Click="btnBillCancel_Click"  />
+    </Grid>
+</Window>

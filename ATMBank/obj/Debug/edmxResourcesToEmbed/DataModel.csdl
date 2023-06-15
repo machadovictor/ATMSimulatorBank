@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankATMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AccountTypes">
+    <Key>
+      <PropertyRef Name="accounttype_code" />
+    </Key>
+    <Property Name="accounttype_code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="accounttype_description" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ClientsAccounts" Relationship="Self.FK_ClientsAccounts_AccountTypes" FromRole="AccountTypes" ToRole="ClientsAccounts" />
+  </EntityType>
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="bank_code" />
+    </Key>
+    <Property Name="bank_code" Type="Int32" Nullable="false" />
+    <Property Name="bank_balance" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="bank_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="client_code" />
+    </Key>
+    <Property Name="client_code" Type="Int32" Nullable="false" />
+    <Property Name="client_fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client_pin" Type="Int32" Nullable="false" />
+    <Property Name="client_situation" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="client_attempts" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ClientsAccounts" Relationship="Self.FK_ClientsAccounts_Clients" FromRole="Clients" ToRole="ClientsAccounts" />
+    <NavigationProperty Name="TransactionsHistory" Relationship="Self.FK_THistory_Clients" FromRole="Clients" ToRole="TransactionsHistory" />
+  </EntityType>
+  <EntityType Name="ClientsAccounts">
+    <Key>
+      <PropertyRef Name="clientaccount_id" />
+    </Key>
+    <Property Name="clientaccount_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client_code" Type="Int32" Nullable="false" />
+    <Property Name="accounttype_code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="account_balance" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="accounttype_description" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="clientaccount_id_transferto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountTypes" Relationship="Self.FK_ClientsAccounts_AccountTypes" FromRole="ClientsAccounts" ToRole="AccountTypes" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK_ClientsAccounts_Clients" FromRole="ClientsAccounts" ToRole="Clients" />
+    <NavigationProperty Name="TransactionsHistory" Relationship="Self.FK_THistory_ClientsAccounts" FromRole="ClientsAccounts" ToRole="TransactionsHistory" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TransactionsHistory">
+    <Key>
+      <PropertyRef Name="transaction_id" />
+    </Key>
+    <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clientaccount_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client_code" Type="Int32" Nullable="false" />
+    <Property Name="accounttype_description" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="transactiontype_code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="transactiontype_description" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="transaction_amount" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="transaction_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="clientaccount_id_transferto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK_THistory_Clients" FromRole="TransactionsHistory" ToRole="Clients" />
+    <NavigationProperty Name="ClientsAccounts" Relationship="Self.FK_THistory_ClientsAccounts" FromRole="TransactionsHistory" ToRole="ClientsAccounts" />
+    <NavigationProperty Name="TransactionTypes" Relationship="Self.FK_THistory_TTypes" FromRole="TransactionsHistory" ToRole="TransactionTypes" />
+  </EntityType>
+  <EntityType Name="TransactionTypes">
+    <Key>
+      <PropertyRef Name="transactiontype_code" />
+    </Key>
+    <Property Name="transactiontype_code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="transactiontype_description" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TransactionsHistory" Relationship="Self.FK_THistory_TTypes" FromRole="TransactionTypes" ToRole="TransactionsHistory" />
+  </EntityType>
+  <Association Name="FK_ClientsAccounts_AccountTypes">
+    <End Role="AccountTypes" Type="Self.AccountTypes" Multiplicity="1" />
+    <End Role="ClientsAccounts" Type="Self.ClientsAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountTypes">
+        <PropertyRef Name="accounttype_code" />
+      </Principal>
+      <Dependent Role="ClientsAccounts">
+        <PropertyRef Name="accounttype_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientsAccounts_Clients">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="ClientsAccounts" Type="Self.ClientsAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="client_code" />
+      </Principal>
+      <Dependent Role="ClientsAccounts">
+        <PropertyRef Name="client_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THistory_Clients">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="TransactionsHistory" Type="Self.TransactionsHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="client_code" />
+      </Principal>
+      <Dependent Role="TransactionsHistory">
+        <PropertyRef Name="client_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THistory_ClientsAccounts">
+    <End Role="ClientsAccounts" Type="Self.ClientsAccounts" Multiplicity="1" />
+    <End Role="TransactionsHistory" Type="Self.TransactionsHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientsAccounts">
+        <PropertyRef Name="clientaccount_id" />
+      </Principal>
+      <Dependent Role="TransactionsHistory">
+        <PropertyRef Name="clientaccount_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THistory_TTypes">
+    <End Role="TransactionTypes" Type="Self.TransactionTypes" Multiplicity="1" />
+    <End Role="TransactionsHistory" Type="Self.TransactionsHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionTypes">
+        <PropertyRef Name="transactiontype_code" />
+      </Principal>
+      <Dependent Role="TransactionsHistory">
+        <PropertyRef Name="transactiontype_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankATMEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccountTypes" EntityType="Self.AccountTypes" />
+    <EntitySet Name="Bank" EntityType="Self.Bank" />
+    <EntitySet Name="Clients" EntityType="Self.Clients" />
+    <EntitySet Name="ClientsAccounts" EntityType="Self.ClientsAccounts" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TransactionsHistory" EntityType="Self.TransactionsHistory" />
+    <EntitySet Name="TransactionTypes" EntityType="Self.TransactionTypes" />
+    <AssociationSet Name="FK_ClientsAccounts_AccountTypes" Association="Self.FK_ClientsAccounts_AccountTypes">
+      <End Role="AccountTypes" EntitySet="AccountTypes" />
+      <End Role="ClientsAccounts" EntitySet="ClientsAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientsAccounts_Clients" Association="Self.FK_ClientsAccounts_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="ClientsAccounts" EntitySet="ClientsAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THistory_Clients" Association="Self.FK_THistory_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="TransactionsHistory" EntitySet="TransactionsHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THistory_ClientsAccounts" Association="Self.FK_THistory_ClientsAccounts">
+      <End Role="ClientsAccounts" EntitySet="ClientsAccounts" />
+      <End Role="TransactionsHistory" EntitySet="TransactionsHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THistory_TTypes" Association="Self.FK_THistory_TTypes">
+      <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+      <End Role="TransactionsHistory" EntitySet="TransactionsHistory" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BankATMModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BankATMModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

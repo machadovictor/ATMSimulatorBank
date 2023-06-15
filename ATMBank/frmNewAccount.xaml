@@ -1,0 +1,36 @@
+﻿<Window x:Class="ATMBank.frmNewAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ATMBank"
+        mc:Ignorable="d"
+        Title="New Account - Register" Height="500" Width="500">
+    <Grid Background="Snow">
+        <WrapPanel Orientation="Vertical">
+            <TextBox x:Name="textBox" Height="71.905" Width="494.046" Text="ACCOUNT REGISTRATION" Background="#ec0000" FontSize="24" Foreground="#333333" FontWeight="Bold" TextAlignment="Center" VerticalContentAlignment="Center"/>
+        </WrapPanel>
+
+        <Label Content="Client Code:" HorizontalAlignment="Right" FontSize="16" Width="111" Margin="0,106,328.6,240.4" Foreground="#333333" FontWeight="Bold" Target="{Binding ElementName=newClientCode}" />
+        <ComboBox x:Name="newAccountClientCode" FontSize="14" Margin="170,105,226,337" ItemsSource="{Binding}"
+                            DisplayMemberPath="ClientFullInfo" SelectionChanged="newAccountClientCode_SelectionChanged"/>
+
+        <ComboBox x:Name="newAccountExistingAccounts" FontSize="14" Margin="246,157,56,283" ItemsSource="{Binding}"
+                            DisplayMemberPath="AccountFullInfo"/>
+        <Label Content="Existing Client Accounts:" HorizontalAlignment="Right" FontSize="16" Width="203" Margin="0,161,246.6,185.4" Foreground="#333333" FontWeight="Bold"/>
+
+        <TextBox x:Name="clientShowFullName" FontSize="14" Margin="277,102,48.6,322.4" BorderBrush="{x:Null}" Background="{x:Null}"/>
+        <Label Content="New Account Type:" HorizontalAlignment="Right" FontSize="16" Width="160" Margin="0,214,256.6,132.4" Foreground="#333333" FontWeight="Bold"/>
+        <Label Content="Only one Line of Credit permitted." HorizontalAlignment="Right" FontSize="12" Width="229" Margin="0,234,233.6,112.4" Foreground="#333333" FontWeight="Bold"/>
+
+        <ComboBox x:Name="newAccountType" FontSize="14" Margin="245,217,56,226" SelectionChanged="newAccountType_SelectionChanged"/>
+        <Label Content="New Account ID:" HorizontalAlignment="Right" FontSize="16" Width="144" Margin="0,280,288.6,66.4" Foreground="#333333" FontWeight="Bold"/>
+        <TextBox x:Name="newAccountId" FontSize="14" Margin="204,276,98,164"/>
+        <Label Content="Initial Balance:" HorizontalAlignment="Right" FontSize="16" Width="160" Margin="0,336,256.6,22.4" Foreground="#333333" FontWeight="Bold"/>
+        <TextBox x:Name="newAccountBalance" FontSize="14" Margin="204,334,98,109"/>
+
+
+        <Button x:Name="btnNewClientSave" Content="_Save"   Foreground="#333333" FontWeight="Bold" Margin="115.492,393.166,269.032,40.168" Click="btnNewClientSave_Click"  />
+        <Button x:Name="btnNewClientCancel" Content="_Cancel"   Foreground="#333333" FontWeight="Bold" Margin="269.762,393.166,114.762,38.906" Click="btnNewClientCancel_Click_1"  />
+    </Grid>
+</Window>
